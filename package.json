@@ -1,0 +1,30 @@
+{
+    "name": "buster-syntax",
+    "version": "0.1.0",
+    "description": "",
+    "homepage": "http://busterjs.org/docs/buster-syntax",
+    "author": {
+        "name": "Christian Johansen",
+        "email": "christian@cjohansen.no",
+        "url": "http://cjohansen.no"
+    },
+    "contributors": [{
+        "name": "August Lilleaas",
+        "email": "august.lilleaas@gmail.com",
+        "url": "http://augustl.com"
+    }],
+    "main": "./lib/buster-syntax",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/busterjs/buster-syntax.git"
+    },
+    "dependencies": {
+        "jsdom": "~0.2.10",
+        "uglify-js": "~1.2.5"
+    },
+    "devDependencies": {
+        "buster": "*",
+        "buster-analyzer": "*",
+        "buster-resources": "*"
+    }
+}
