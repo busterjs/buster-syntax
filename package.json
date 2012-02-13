@@ -25,6 +25,6 @@
     "devDependencies": {
         "buster": "*",
         "buster-analyzer": ">=0.1",
-        "buster-resources": ">=0.2"
+        "buster-configuration": ">=0.3"
     }
 }
