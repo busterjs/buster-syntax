@@ -30,7 +30,7 @@ buster.testCase("Syntax extension", {
             assert.calledOnce(this.listeners.fatal);
             assert.calledWith(this.listeners.fatal,
                               "Syntax error in /buster.js");
-        }.bind(this)));
+        }.bind(this)), buster.log);
     },
 
     "flags error on reference error": function (done) {
@@ -82,6 +82,20 @@ buster.testCase("Syntax extension", {
 
         process(group, done(function (resource) {
             assert.equals(this.listeners.fatal.callCount, 4);
+        }.bind(this)), buster.log);
+    },
+
+    "does not syntax-check non-javascript resources": function (done) {
+        var group = this.config.addGroup("Some tests", {
+            resources: [{ path: "/buster", content: "va a = 42;" }],
+            libs: ["/buster"]
+        });
+
+        group.bundleFramework();
+        syntax.create().beforeRun(group, this.analyzer);
+
+        process(group, done(function (resource) {
+            refute.called(this.listeners.fatal);
         }.bind(this)), buster.log);
     }
 });
