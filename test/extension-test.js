@@ -73,7 +73,7 @@ buster.testCase("Syntax extension", {
             ],
             libs: ["/buster.js"],
             sources: ["/buster.js"],
-            testLibs: ["/buster.js"],
+            testHelpers: ["/buster.js"],
             tests: ["/buster.js"]
         });
 
