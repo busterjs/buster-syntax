@@ -1,6 +1,6 @@
 {
     "name": "buster-syntax",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "",
     "homepage": "http://busterjs.org/docs/buster-syntax",
     "author": {
@@ -19,8 +19,10 @@
         "url": "https://github.com/busterjs/buster-syntax.git"
     },
     "dependencies": {
-        "jsdom": "~0.2.10",
         "uglify-js": "~1.2.5"
+    },
+    "optionalDependencies": {
+        "jsdom": "~0.2.10"
     },
     "devDependencies": {
         "buster": "*",
