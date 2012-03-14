@@ -13,21 +13,37 @@ buster.testCase("Syntax", {
     "fails syntactically invalid code": function () {
         var result = syntax.create().check("va a = 42;");
         refute(result.ok);
-        assert.match(result.toString(), "Unexpected token");
-        assert.equals(result.type, syntax.SYNTAX_ERROR);
+        assert.equals(result.errors, [{
+            type: syntax.SYNTAX_ERROR,
+            file: null,
+            line: 1,
+            col: 4,
+            content: "va a = 42;",
+            message: "Unexpected token: name (a)"
+        }]);
     },
 
     "formats syntax error nicely": function () {
         var result = syntax.create().check("va a = 42;");
 
-        assert.match(result.toString(), "[anonymous]:1:4\nva a = 42;\n" +
-                     "   ^\nUnexpected token: name (a)\n");
+        assert.equals(result.errors, [{
+            type: syntax.SYNTAX_ERROR,
+            file: null,
+            line: 1,
+            col: 4,
+            content: "va a = 42;",
+            message: "Unexpected token: name (a)"
+        }]);
     },
 
     "formats syntax error with file name": function () {
         var result = syntax.create().check("va a = 42;", "omg.js");
 
-        assert.match(result.toString(), "omg.js:1:4");
+        assert.match(result.errors, [{
+            file: "omg.js",
+            line: 1,
+            col: 4
+        }]);
     },
 
     "recognizes browser globals": function () {
@@ -45,7 +61,7 @@ buster.testCase("Syntax", {
         checker.check("jQuery = function () {};");
         var result = checker.check("var a = $('div');");
         refute(result.ok);
-        assert.equals(result.type, syntax.REFERENCE_ERROR);
+        assert.equals(result.errors[0].type, syntax.REFERENCE_ERROR);
     },
 
     "ignores reference errors": function () {
