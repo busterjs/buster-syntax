@@ -97,5 +97,19 @@ buster.testCase("Syntax extension", {
         process(group, done(function (resource) {
             refute.called(this.listeners.fatal);
         }.bind(this)), buster.log);
+    },
+
+    "does not fail file ending in comment": function (done) {
+        var group = this.config.addGroup("Some tests", {
+            resources: [{ path: "/some.js", content: "// var a = 42;" }],
+            libs: ["/some.js"]
+        });
+
+        group.bundleFramework();
+        syntax.create().beforeRun(group, this.analyzer);
+
+        process(group, done(function (resource) {
+            refute.called(this.listeners.fatal);
+        }.bind(this)), buster.log);
     }
 });

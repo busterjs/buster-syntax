@@ -68,5 +68,15 @@ buster.testCase("Syntax", {
         var checker = syntax.create({ ignoreReferenceErrors: true });
         var result = checker.check("var a = $('div');");
         assert(result.ok);
+    },
+
+    "does not fail on file ending in comment": function () {
+        var checker = syntax.create();
+        var result = checker.check("jQuery = function () {};\n// Ok");
+        assert(result.ok);
+
+        checker = syntax.create({ ignoreReferenceErrors: true });
+        result = checker.check("jQuery = function () {};\n// Ok");
+        assert(result.ok);
     }
 });
