@@ -22,7 +22,7 @@
         "uglify-js": "~1.2.5"
     },
     "optionalDependencies": {
-        "jsdom": "~0.2.10"
+        "jsdom": "~0.2.14"
     },
     "devDependencies": {
         "buster": "*",
