@@ -18,6 +18,9 @@
         "type": "git",
         "url": "https://github.com/busterjs/buster-syntax.git"
     },
+    "scripts": {
+        "test": "buster test"
+    },
     "dependencies": {
         "uglify-js": "~1.2.5"
     },
