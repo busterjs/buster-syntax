@@ -24,7 +24,9 @@ buster.testCase("Syntax extension", {
             sources: ["/buster.js"]
         });
 
-        syntax.create().beforeRun(group, this.analyzer);
+        var ext = syntax.create();
+        ext.analyze(this.analyzer);
+        ext.configure(group);
 
         process(group, done(function (resource) {
             assert.calledOnce(this.listeners.fatal);
@@ -39,7 +41,9 @@ buster.testCase("Syntax extension", {
             sources: ["/buster.js"]
         });
 
-        syntax.create().beforeRun(group, this.analyzer);
+        var ext = syntax.create();
+        ext.analyze(this.analyzer);
+        ext.configure(group);
 
         process(group, done(function (resource) {
             assert.calledOnce(this.listeners.error);
@@ -54,16 +58,16 @@ buster.testCase("Syntax extension", {
             sources: ["/buster.js"]
         });
 
-        syntax.create({
-            ignoreReferenceErrors: true
-        }).beforeRun(group, this.analyzer);
+        var ext = syntax.create({ ignoreReferenceErrors: true });
+        ext.analyze(this.analyzer);
+        ext.configure(group);
 
         process(group, done(function (resource) {
             refute.called(this.listeners.error);
         }.bind(this)));
     },
 
-    "flags fatal on all user sources, not framework": function (done) {
+    "flags fatal on all user sources": function (done) {
         var group = this.config.addGroup("Some tests", {
             resources: [
                 { path: "/buster.js", content: "va a = 42;" },
@@ -77,8 +81,9 @@ buster.testCase("Syntax extension", {
             tests: ["/buster.js"]
         });
 
-        group.bundleFramework();
-        syntax.create().beforeRun(group, this.analyzer);
+        var ext = syntax.create();
+        ext.analyze(this.analyzer);
+        ext.configure(group);
 
         process(group, done(function (resource) {
             assert.equals(this.listeners.fatal.callCount, 4);
@@ -91,8 +96,9 @@ buster.testCase("Syntax extension", {
             libs: ["/buster"]
         });
 
-        group.bundleFramework();
-        syntax.create().beforeRun(group, this.analyzer);
+        var ext = syntax.create();
+        ext.analyze(this.analyzer);
+        ext.configure(group);
 
         process(group, done(function (resource) {
             refute.called(this.listeners.fatal);
@@ -105,8 +111,9 @@ buster.testCase("Syntax extension", {
             libs: ["/some.js"]
         });
 
-        group.bundleFramework();
-        syntax.create().beforeRun(group, this.analyzer);
+        var ext = syntax.create();
+        ext.analyze(this.analyzer);
+        ext.configure(group);
 
         process(group, done(function (resource) {
             refute.called(this.listeners.fatal);
