@@ -1,5 +1,5 @@
 var buster = require("buster");
-var syntax = require("../lib/buster-syntax").extension;
+var syntax = require("../lib/buster-syntax");
 var config = require("buster-configuration");
 var analyzer = require("buster-analyzer").analyzer;
 

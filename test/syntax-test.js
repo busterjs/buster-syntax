@@ -1,5 +1,5 @@
 var buster = require("buster");
-var syntax = require("../lib/buster-syntax").syntax;
+var syntax = require("../lib/syntax");
 
 buster.testCase("Syntax", {
     "passes syntactically valid code": function () {
