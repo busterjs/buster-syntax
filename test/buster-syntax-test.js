@@ -30,8 +30,7 @@ buster.testCase("Syntax extension", {
 
         process(group, done(function (resource) {
             assert.calledOnce(this.listeners.fatal);
-            assert.calledWith(this.listeners.fatal,
-                              "Syntax error in /buster.js");
+            assert.calledWith(this.listeners.fatal, "Syntax error");
         }.bind(this)), buster.log);
     },
 
@@ -47,8 +46,7 @@ buster.testCase("Syntax extension", {
 
         process(group, done(function (resource) {
             assert.calledOnce(this.listeners.error);
-            assert.calledWith(this.listeners.error,
-                              "ReferenceError in /buster.js");
+            assert.calledWith(this.listeners.error, "ReferenceError");
         }.bind(this)));
     },
 
@@ -118,5 +116,35 @@ buster.testCase("Syntax extension", {
         process(group, done(function (resource) {
             refute.called(this.listeners.fatal);
         }.bind(this)), buster.log);
+    },
+
+    "renders resource uncacheable with fatal error": function (done) {
+        var group = this.config.addGroup("Some tests", {
+            resources: [{ path: "/some.js", content: "va a = 42;" }],
+            sources: ["/some.js"]
+        });
+
+        var ext = syntax.create();
+        ext.analyze(this.analyzer);
+        ext.configure(group);
+
+        process(group, done(function (rs) {
+            assert.isFalse(rs.resources[0].cacheable);
+        }));
+    },
+
+    "renders resource uncacheable with reference error": function (done) {
+        var group = this.config.addGroup("Some tests", {
+            resources: [{ path: "/some.js", content: "buster.ok();" }],
+            sources: ["/some.js"]
+        });
+
+        var ext = syntax.create();
+        ext.analyze(this.analyzer);
+        ext.configure(group);
+
+        process(group, done(function (rs) {
+            assert.isFalse(rs.resources[0].cacheable);
+        }));
     }
 });
