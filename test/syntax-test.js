@@ -1,7 +1,10 @@
-var buster = require("buster");
+var testCase = require("buster-test").testCase;
+var referee = require("referee");
+var assert = referee.assert;
+var refute = referee.refute;
 var syntax = require("../lib/syntax");
 
-buster.testCase("Syntax", {
+testCase("Syntax", {
     "passes syntactically valid code": function () {
         assert(syntax.create().check("var a = 42;").ok);
     },

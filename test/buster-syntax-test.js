@@ -1,7 +1,11 @@
-var buster = require("buster");
+var sinon = require("sinon");
+var testCase = require("buster-test").testCase;
+var referee = require("referee");
+var assert = referee.assert;
+var refute = referee.refute;
 var syntax = require("../lib/buster-syntax");
-var config = require("buster-configuration");
-var analyzer = require("buster-analyzer").analyzer;
+var bc = require("buster-configuration");
+var ba = require("buster-analyzer");
 
 function process(group, then, errBack) {
     group.resolve().then(function (resourceSet) {
@@ -9,11 +13,11 @@ function process(group, then, errBack) {
     }, errBack);
 }
 
-buster.testCase("Syntax extension", {
+testCase("Syntax extension", {
     setUp: function () {
-        this.config = config.create();
-        this.analyzer = analyzer.create();
-        this.listeners = { fatal: this.spy(), error: this.spy() };
+        this.config = bc.createConfiguration();
+        this.analyzer = ba.createAnalyzer();
+        this.listeners = { fatal: sinon.spy(), error: sinon.spy() };
         this.analyzer.on("fatal", this.listeners.fatal);
         this.analyzer.on("error", this.listeners.error);
     },
@@ -29,8 +33,8 @@ buster.testCase("Syntax extension", {
         ext.configure(group);
 
         process(group, done(function (resource) {
-            assert.calledOnce(this.listeners.fatal);
-            assert.calledWith(this.listeners.fatal, "Syntax error");
+            assert(this.listeners.fatal.calledOnce);
+            assert(this.listeners.fatal.calledWith("Syntax error"));
         }.bind(this)), buster.log);
     },
 
@@ -45,8 +49,8 @@ buster.testCase("Syntax extension", {
         ext.configure(group);
 
         process(group, done(function (resource) {
-            assert.calledOnce(this.listeners.error);
-            assert.calledWith(this.listeners.error, "ReferenceError");
+            assert(this.listeners.error.calledOnce);
+            assert(this.listeners.error.calledWith("ReferenceError"));
         }.bind(this)));
     },
 
@@ -61,7 +65,7 @@ buster.testCase("Syntax extension", {
         ext.configure(group);
 
         process(group, done(function (resource) {
-            refute.called(this.listeners.error);
+            refute(this.listeners.error.called);
         }.bind(this)));
     },
 
@@ -99,7 +103,7 @@ buster.testCase("Syntax extension", {
         ext.configure(group);
 
         process(group, done(function (resource) {
-            refute.called(this.listeners.fatal);
+            refute(this.listeners.fatal.called);
         }.bind(this)), buster.log);
     },
 
@@ -114,7 +118,7 @@ buster.testCase("Syntax extension", {
         ext.configure(group);
 
         process(group, done(function (resource) {
-            refute.called(this.listeners.fatal);
+            refute(this.listeners.fatal.called);
         }.bind(this)), buster.log);
     },
 

@@ -2,16 +2,16 @@
     "name": "buster-syntax",
     "version": "0.4.2",
     "description": "",
-    "homepage": "http://busterjs.org/docs/buster-syntax",
+    "homepage": "http://busterjs.org/docs/syntax",
     "author": {
         "name": "Christian Johansen",
         "email": "christian@cjohansen.no",
         "url": "http://cjohansen.no"
     },
     "contributors": [{
-        "name": "August Lilleaas",
-        "email": "august.lilleaas@gmail.com",
-        "url": "http://augustl.com"
+        "name": "Stein Magnus Jodal",
+        "email": "stein.magnus@jodal.no",
+        "url": "http://jodal.no"
     }],
     "main": "./lib/buster-syntax",
     "repository": {
@@ -19,7 +19,7 @@
         "url": "https://github.com/busterjs/buster-syntax.git"
     },
     "scripts": {
-        "test": "./node_modules/buster/bin/buster-test"
+        "test": "node run-tests.js"
     },
     "dependencies": {
         "uglify-js": "~1.2.5"
@@ -28,7 +28,9 @@
         "jsdom": "~0.2.14"
     },
     "devDependencies": {
-        "buster": "*",
+        "sinon": "*",
+        "referee": "*",
+        "buster-test": "*",
         "buster-analyzer": ">=0.3",
         "buster-configuration": ">=0.5.0"
     }
