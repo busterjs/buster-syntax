@@ -15,7 +15,7 @@ buster-syntax
 
 ``buster-syntax`` is an API for syntax checking JavaScript in Node.JS. It also
 provides a Buster.JS extension that syntax checks files on the server before
-running them in the browser (over ``ramp-capture-server``).
+running them in the browser (over ``ramp``).
 
 Catching errors early with Buster.JS test runs has one primary goal: Avoid
 browsers with poor error handling freezing if a test run contains lots of
