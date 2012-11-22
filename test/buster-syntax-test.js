@@ -35,7 +35,7 @@ testCase("Syntax extension", {
         process(group, done(function (resource) {
             assert(this.listeners.fatal.calledOnce);
             assert(this.listeners.fatal.calledWith("Syntax error"));
-        }.bind(this)), buster.log);
+        }.bind(this)), console.log);
     },
 
     "flags error on reference error": function (done) {
@@ -89,7 +89,7 @@ testCase("Syntax extension", {
 
         process(group, done(function (resource) {
             assert.equals(this.listeners.fatal.callCount, 4);
-        }.bind(this)), buster.log);
+        }.bind(this)), console.log);
     },
 
     "does not syntax-check non-javascript resources": function (done) {
@@ -104,7 +104,7 @@ testCase("Syntax extension", {
 
         process(group, done(function (resource) {
             refute(this.listeners.fatal.called);
-        }.bind(this)), buster.log);
+        }.bind(this)), console.log);
     },
 
     "does not fail file ending in comment": function (done) {
@@ -119,7 +119,7 @@ testCase("Syntax extension", {
 
         process(group, done(function (resource) {
             refute(this.listeners.fatal.called);
-        }.bind(this)), buster.log);
+        }.bind(this)), console.log);
     },
 
     "renders resource uncacheable with fatal error": function (done) {
