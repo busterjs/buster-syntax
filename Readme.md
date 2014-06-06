@@ -86,3 +86,10 @@ syntax.check("$('li').on('click', function() {})"); // => {
 var checker = syntax.configure({ ignoreReferenceErrors: true });
 checker.check("$('li').on('click', function() {})"); // => { ok: true }
 ```
+
+
+## Changelog
+
+**0.4.3** (06.06.2014)
+
+* JsDom updated to version ~0.10 for issue [#410 - Buster is modifying the global `Error` object (via old JSDOM)](https://github.com/busterjs/buster/issues/410)
