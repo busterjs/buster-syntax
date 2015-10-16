@@ -3,11 +3,6 @@ var referee = require("referee");
 var assert = referee.assert;
 var refute = referee.refute;
 var syntax = require("../lib/syntax");
-var jsdom;
-
-try {
-    jsdom = require("jsdom");
-} catch (e) {}
 
 testCase("Syntax", {
     "passes syntactically valid code": function () {
@@ -62,18 +57,6 @@ testCase("Syntax", {
         var checker = syntax.configure();
         checker.check("jQuery = function () {};");
         assert(checker.check("var a = jQuery('div');").ok);
-    },
-
-    "when jsdom is available": {
-        requiresSupportFor: { "jsdom": typeof jsdom !== "undefined" },
-
-        "does not recognize undefined globals": function () {
-            var checker = syntax.configure();
-            checker.check("jQuery = function () {};");
-            var result = checker.check("var a = $('div');");
-            refute(result.ok, JSON.stringify(result));
-            assert.equals(result.errors[0].type, syntax.REFERENCE_ERROR);
-        }
     },
 
     "ignores reference errors": function () {
