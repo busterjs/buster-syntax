@@ -23,14 +23,17 @@
         "test": "node run-tests.js",
         "test-debug": "node --debug-brk run-tests.js"
     },
+    "engines": {
+        "node": ">= 4"
+    },
     "dependencies": {
-        "uglify-js": "~1.2.5"
+        "uglify-js": "1.x"
     },
     "devDependencies": {
-        "sinon": "*",
-        "referee": "*",
-        "buster-test": "*",
-        "buster-analyzer": ">=0.4",
-        "buster-configuration": ">=0.6.0"
+        "sinon": "1.x",
+        "referee": "1.x",
+        "buster-test": "0.7.x",
+        "buster-analyzer": "0.6.x",
+        "buster-configuration": "0.8.x"
     }
 }
