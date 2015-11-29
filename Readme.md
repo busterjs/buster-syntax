@@ -90,6 +90,12 @@ checker.check("$('li').on('click', function() {})"); // => { ok: true }
 
 ## Changelog
 
-**0.4.3** (06.06.2014)
+**0.5.0** (2015-Nov-29)
+
+* Updated all dependencies, incl. uglify to v2
+* Removed `jsdom`
+* Added supported engines (node 4+) flag in package.json
+
+**0.4.3** (2014-Jun-06)
 
 * JsDom updated to version ~0.10 for issue [#410 - Buster is modifying the global `Error` object (via old JSDOM)](https://github.com/busterjs/buster/issues/410)

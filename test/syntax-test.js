@@ -4,13 +4,28 @@ var assert = referee.assert;
 var refute = referee.refute;
 var syntax = require("../lib/syntax");
 
+function arrowFunctionsSupported () {
+    try {
+        new Function("return () => 42;");
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
+
 testCase("Syntax", {
     "passes syntactically valid code": function () {
         assert(syntax.configure().check("var a = 42;").ok);
     },
 
-    "passes syntactically valid ES6 code": function () {
-        assert(syntax.configure().check("var a = () => 42;").ok);
+    "passes syntactically valid ES6 code": {
+        "requiresSupportFor": {
+            arrowFunctions: arrowFunctionsSupported()
+        },
+
+        "test": function () {
+            assert(syntax.configure().check("var a = () => 42;").ok);
+        }
     },
 
     "passes syntactically valid code with file name": function () {
