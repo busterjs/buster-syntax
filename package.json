@@ -27,7 +27,7 @@
         "node": ">= 4"
     },
     "dependencies": {
-        "uglify-js": "1.x"
+        "uglify-js": "2.x"
     },
     "devDependencies": {
         "sinon": "1.x",

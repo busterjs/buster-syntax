@@ -9,6 +9,10 @@ testCase("Syntax", {
         assert(syntax.configure().check("var a = 42;").ok);
     },
 
+    "passes syntactically valid ES6 code": function () {
+        assert(syntax.configure().check("var a = () => 42;").ok);
+    },
+
     "passes syntactically valid code with file name": function () {
         assert(syntax.configure().check("var a = 42;", "booya.js").ok);
     },
@@ -16,11 +20,12 @@ testCase("Syntax", {
     "fails syntactically invalid code": function () {
         var result = syntax.configure().check("va a = 42;");
         refute(result.ok);
+
         assert.equals(result.errors, [{
             type: syntax.SYNTAX_ERROR,
             file: null,
             line: 1,
-            col: 4,
+            col: 3,
             content: "va a = 42;",
             message: "Unexpected token: name (a)"
         }]);
@@ -33,7 +38,7 @@ testCase("Syntax", {
             type: syntax.SYNTAX_ERROR,
             file: null,
             line: 1,
-            col: 4,
+            col: 3,
             content: "va a = 42;",
             message: "Unexpected token: name (a)"
         }]);
@@ -45,7 +50,7 @@ testCase("Syntax", {
         assert.match(result.errors, [{
             file: "omg.js",
             line: 1,
-            col: 4
+            col: 3
         }]);
     },
 
