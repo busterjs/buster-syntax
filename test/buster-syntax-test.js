@@ -8,9 +8,11 @@ var bc = require("buster-configuration");
 var ba = require("buster-analyzer");
 
 function process(group, then, errBack) {
-    group.resolve().then(function (resourceSet) {
-        resourceSet.serialize().then(then, errBack);
-    }, errBack);
+    group.resolve()
+        .then(function (resourceSet) {
+            return resourceSet.serialize();
+        })
+        .then(then, errBack);
 }
 
 testCase("Syntax extension", {
@@ -51,7 +53,7 @@ testCase("Syntax extension", {
         process(group, done(function (resource) {
             assert(this.listeners.error.calledOnce);
             assert(this.listeners.error.calledWith("ReferenceError"));
-        }.bind(this)));
+        }.bind(this)), console.log);
     },
 
     "skips reference error if configured thusly": function (done) {
@@ -66,7 +68,7 @@ testCase("Syntax extension", {
 
         process(group, done(function (resource) {
             refute(this.listeners.error.called);
-        }.bind(this)));
+        }.bind(this)), console.log);
     },
 
     "flags fatal on all user sources": function (done) {
@@ -134,7 +136,7 @@ testCase("Syntax extension", {
 
         process(group, done(function (rs) {
             assert.isFalse(rs.resources[0].cacheable);
-        }));
+        }), console.log);
     },
 
     "renders resource uncacheable with reference error": function (done) {
@@ -149,6 +151,6 @@ testCase("Syntax extension", {
 
         process(group, done(function (rs) {
             assert.isFalse(rs.resources[0].cacheable);
-        }));
+        }), console.log);
     }
 });
