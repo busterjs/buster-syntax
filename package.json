@@ -26,9 +26,6 @@
     "dependencies": {
         "uglify-js": "~1.2.5"
     },
-    "optionalDependencies": {
-        "jsdom": "~0.10"
-    },
     "devDependencies": {
         "sinon": "*",
         "referee": "*",
