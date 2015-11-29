@@ -1,39 +1,41 @@
 {
-    "name": "buster-syntax",
-    "version": "0.4.3",
-    "description": "",
-    "homepage": "http://busterjs.org/docs/syntax",
-    "author": {
-        "name": "Christian Johansen",
-        "email": "christian@cjohansen.no",
-        "url": "http://cjohansen.no"
-    },
-    "contributors": [{
-        "name": "Stein Magnus Jodal",
-        "email": "stein.magnus@jodal.no",
-        "url": "http://jodal.no"
-    }],
-    "license": "BSD-3-Clause",
-    "main": "./lib/buster-syntax",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/busterjs/buster-syntax.git"
-    },
-    "scripts": {
-        "test": "node run-tests.js",
-        "test-debug": "node --debug-brk run-tests.js"
-    },
-    "engines": {
-        "node": ">= 4"
-    },
-    "dependencies": {
-        "uglify-js": "2.x"
-    },
-    "devDependencies": {
-        "sinon": "1.x",
-        "referee": "1.x",
-        "buster-test": "0.7.x",
-        "buster-analyzer": "0.6.x",
-        "buster-configuration": "0.8.x"
+  "name": "buster-syntax",
+  "version": "0.5.0",
+  "description": "",
+  "homepage": "http://busterjs.org/docs/syntax",
+  "author": {
+    "name": "Christian Johansen",
+    "email": "christian@cjohansen.no",
+    "url": "http://cjohansen.no"
+  },
+  "contributors": [
+    {
+      "name": "Stein Magnus Jodal",
+      "email": "stein.magnus@jodal.no",
+      "url": "http://jodal.no"
     }
+  ],
+  "license": "BSD-3-Clause",
+  "main": "./lib/buster-syntax",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/busterjs/buster-syntax.git"
+  },
+  "scripts": {
+    "test": "node run-tests.js",
+    "test-debug": "node --debug-brk run-tests.js"
+  },
+  "engines": {
+    "node": ">= 4"
+  },
+  "dependencies": {
+    "uglify-js": "2.x"
+  },
+  "devDependencies": {
+    "sinon": "1.x",
+    "referee": "1.x",
+    "buster-test": "0.7.x",
+    "buster-analyzer": "0.6.x",
+    "buster-configuration": "0.8.x"
+  }
 }
